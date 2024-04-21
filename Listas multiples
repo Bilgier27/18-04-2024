@@ -1,31 +1,17 @@
 """1. Registrar candidatos a una oportunidad de empleo el cual debe cumplir las siguientes condiciones:
-
 	a. Edad (25 - 35 años)
-
 	b. Profesión: ING. SISTEMAS / ING. INFORMATICO
-
 	c. Experiencia: 2 a 4 años
-
 2. Consultar candidatos: Mostrar todos los candidatos
-
 3. Información a capturar:
-
 	- nombres y apellidos completos
-
 	- identificación
-
 	- correo electrónico
-
 	- contacto
-
 	- edad
-
 	- años de experiencia
-
 	- profesión
-
 	- Ciudad
-
 	- Sexo
 """
 ls_nombres = []
@@ -43,23 +29,20 @@ def fnt_limpiar():
     print('Autor: Bilgier Perea A.')
     print('Fecha: 18 de abril del 2024\n')
 
-def fnt_registrar(nombres, identficacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo):
-    if identficacion == '' or nombres == '' or correo == '' or contacto == '' or edad == '' or experiencia == '' or profesion == '' or ciudad == '' or sexo == '':
+def fnt_registrar(nombres, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo):
+    if identificacion == '' or nombres == '' or correo == '' or contacto == '' or edad == '' or experiencia == '' or profesion == '' or ciudad == '' or sexo == '':
         enter = input('Error, debe ingresar todos los datos <ENTER>')
     else:
-        if((experiencia => 2 and experiencia <= 4) and (profesion == '1' or profesion == '2') and (edad >= 25 and edad <=35)):
-            ls_identificacion.append(identficacion)
-            ls_nombres.append(nombres)
-            ls_correo.append(correo)
-            ls_contacto.append(contacto)
-            ls_edad.append(edad)
-            ls_experiencia.append(experiencia)
-            ls_profesion.append(profesion)
-            ls_ciudad.append(ciudad)
-            ls_sexo.append(sexo)
-        else:
-            print('El candidato no cumple con los requisitos')
-            enter = input('\nPersona ya se encuentra registrada con exito <ENTER>')
+        ls_identificacion.append(identificacion)
+        ls_nombres.append(nombres)
+        ls_correo.append(correo)
+        ls_contacto.append(contacto)
+        ls_edad.append(edad)
+        ls_experiencia.append(experiencia)
+        ls_profesion.append(profesion)
+        ls_ciudad.append(ciudad)
+        ls_sexo.append(sexo)
+        enter = input('\nPersona ya se encuentra registrada con exito <ENTER>')
         
 def fnt_selector(opcion):
     fnt_limpiar()
@@ -68,20 +51,22 @@ def fnt_selector(opcion):
         if identificacion in ls_identificacion:
             enter = input('Esta persona ya se encuentra registrada <ENTER>')
         else:
-            nombre = input('Nombre:  ')
-            correo = input('Correo:  ')
-            contacto = input('Contacto:  ')
-            edad = input('Edad:  ')
-            experiencia = input('Experiencia:  ')
-            profesion = input('profesion\n1. Ing. Sistemas\n2. Ing. Informatica\n - >')
-            ciudad = input('Ciudad:  ')
-            sexo = input('Sexo:  ')
-            fnt_registrar(nombre, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo)
-            fnt_limpiar()
+            edad = int(input('Edad:  '))
+            experiencia = int(input('Experiencia:  '))
+            profesion = input('Profesion\n1. Ing. Sistemas\n2. Ing. Informatica\n - >')
+            if((experiencia >= 2 and experiencia <= 4) and (profesion == '1' or profesion == '2') and (edad >= 25 and edad <=35)):
+                nombre = input('Nombre:  ')
+                correo = input('Correo:  ')
+                contacto = input('Contacto:  ')
+                ciudad = input('Ciudad:  ')
+                sexo = input('Sexo:  ')
+                fnt_registrar(nombre, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo)
+            else:
+                input('<ERROR> El candidato no cumple con los requisitos')
     elif opcion == '2':
         fnt_limpiar()
         for i in range(len(ls_identificacion)):
-            print(f'{ls_identificacion[i]}   {ls_nombres[i]}   {ls_correo[i]}   {ls_contacto[i]}  {ls_edad[i]}   {ls_experiencia[i]}   {ls_profesion[i]}   {ls_ciudad[i]}   {ls_sexo[i]}')
+            print(f'{ls_identificacion[i]}     {ls_nombres[i]}     {ls_correo[i]}     {ls_contacto[i]}     {ls_edad[i]}     {ls_experiencia[i]}     {ls_profesion[i]}     {ls_ciudad[i]}   {ls_sexo[i]}')
             enter = input('\nPresione <ENTER> para continuar')
     elif opcion == '3':
         sw = False
@@ -91,5 +76,3 @@ while sw == True:
     fnt_limpiar()
     opcion = input('1. Registrar candidatos\n2. Mostrar candidatos\n3. Salir\n- >  ')
     fnt_selector(opcion)
-
-
