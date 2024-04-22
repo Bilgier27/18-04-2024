@@ -1,4 +1,5 @@
-"""1. Registrar candidatos a una oportunidad de empleo el cual debe cumplir las siguientes condiciones:
+"""
+1. Registrar candidatos a una oportunidad de empleo el cual debe cumplir las siguientes condiciones:
 	a. Edad (25 - 35 años)
 	b. Profesión: ING. SISTEMAS / ING. INFORMATICO
 	c. Experiencia: 2 a 4 años
@@ -14,6 +15,7 @@
 	- Ciudad
 	- Sexo
 """
+#Se hace la creacion de listas siguientes a utilizar
 ls_nombres = []
 ls_identificacion = []
 ls_correo = []
@@ -23,15 +25,18 @@ ls_experiencia = []
 ls_profesion = []
 ls_ciudad = []
 ls_sexo = []
+
+#Se importa la variable limpieza
 import os 
 def fnt_limpiar():
     os.system('cls')
     print('Autor: Bilgier Perea A.')
     print('Fecha: 18 de abril del 2024\n')
-
+#Se define una variable para registrar todos los candidatos
 def fnt_registrar(nombres, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo):
     if identificacion == '' or nombres == '' or correo == '' or contacto == '' or edad == '' or experiencia == '' or profesion == '' or ciudad == '' or sexo == '':
         enter = input('Error, debe ingresar todos los datos <ENTER>')
+#Se usa la variable .append para agregarle o insertale valores a mi lista existente
     else:
         ls_identificacion.append(identificacion)
         ls_nombres.append(nombres)
@@ -43,15 +48,17 @@ def fnt_registrar(nombres, identificacion, correo, contacto, edad, experiencia, 
         ls_ciudad.append(ciudad)
         ls_sexo.append(sexo)
         enter = input('\nPersona ya se encuentra registrada con exito <ENTER>')
-        
+#Se define una variable selector, la variable selector es para seleccionar la opcion que el usuario desea.
 def fnt_selector(opcion):
     global sw
     fnt_limpiar()
     if opcion == '1':
+        #Se pone primero la identificacion para luego buscar a el candidato por su identificion y sea mas exacta su busqueda.
         identificacion = input('\nIdentificacion:  ')
         if identificacion in ls_identificacion:
             enter = input('Esta persona ya se encuentra registrada <ENTER>')
         else:
+            #Se le piden 3 datos obligatorios al candidato, si los cumple puede seguir con el formulario si no lo manda a un else que le dice que no cumple.
             edad = int(input('Edad:  '))
             experiencia = int(input('Experiencia:  '))
             profesion = input('Profesion\n1. Ing. Sistemas\n2. Ing. Informatica\n - >')
@@ -70,8 +77,9 @@ def fnt_selector(opcion):
                 elif sexo == '2':
                     sexo = 'Femenino'
                 fnt_registrar(nombre, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo)
-            else:
+            else:   
                 input('<ERROR> El candidato no cumple con los requisitos')
+    #En esta opcion 2 se crea un ciclo for para repetir e imprimir todos los datos que agrego a las listas 
     elif opcion == '2':
         fnt_limpiar()
         for i in range(len(ls_identificacion)):
@@ -79,6 +87,7 @@ def fnt_selector(opcion):
             enter = input('\nPresione <ENTER> para continuar')
     elif opcion == '3':
         sw = False
+#Creo un ciclo de la variable sw para que el programa se repita hasta que el usuario quiera salir.
 sw = True
 while sw == True:
     fnt_limpiar()
